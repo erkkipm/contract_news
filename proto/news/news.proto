@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package news;
+
+
+// используется при генерации файлов на GO
+option go_package = "erkkipm.news.v1beta1;newsv1";
+
+service News {
+  rpc NewsSave(SaveRequest) returns (SaveResponse);
+  rpc NewsEdit(EditRequest) returns (EditResponse);
+  rpc NewsDelete(DeleteRequest) returns (DeleteResponse);
+//  rpc NewsForList(ListRequest) returns (ListResponse);
+//  rpc NewsID(IDRequest) returns (IDResponse);
+}
+
+message SaveRequest {
+  string title = 1; // Заголовок
+  int64 news_date = 2; // Дата
+  string text = 3; // Текст
+  string image = 4; // Изображение
+  string category = 5; // Категория
+  int64 user_id = 6; // Идентификатор юзера
+  int64 app_id = 7; // Идентификатор приложения
+}
+
+message SaveResponse {
+  int64 news_id = 1; // Идентификатор новости
+}
+
+
+message EditRequest {
+  string news_id = 1;
+  string title = 2; // Заголовок
+  int64 news_date = 3; // Дата
+  string text = 4; // Текст
+  string image = 5; // Изображение
+  string category = 6; // Категория
+  int64 user_id = 7; // Идентификатор юзер
+}
+
+message EditResponse {
+  string news_id = 1;
+}
+
+message DeleteRequest {
+  string news_id = 1;
+}
+
+message DeleteResponse {
+  string news_id = 1;
+}
+
